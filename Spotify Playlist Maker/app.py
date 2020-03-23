@@ -16,7 +16,7 @@ class Playlist:
         self.token = spotify_token
         self.name = name
 
-
+    '''
     def create_association(self):
         response = requests.get(self.scrap_url)
         soup = BeautifulSoup(response.content, "html.parser")
@@ -28,7 +28,7 @@ class Playlist:
             self.assocations.append(item.get_text())
 
         print("word association list complete")
-
+    '''
 
     def intialize_playlist(self):#creates an empty playlist
         request_body = json.dumps({
@@ -97,7 +97,7 @@ class Playlist:
 
 
 
-    def add_song(self, song):
+    def add_song(self, song):#adds song to playlist
         query = "https://api.spotify.com/v1/playlists/{}/tracks".format(self.playlist)
         request_body = json.dumps([song['uri']])
 
@@ -113,7 +113,7 @@ class Playlist:
 
 
 
-    def generate(self, size):
+    def generate(self, size):#curates a playlist
         self.intialize_playlist()
         playlist_query = self.find_playlists(5)
         curr_size = 0
@@ -139,21 +139,10 @@ class Playlist:
                         i+=1
 
 
-        #intialize_playlist
-        #find playlists
-        #while current song count + random number of new songs < desired size
-            #choose random playlist
-                #extract songs from playlist
-                #while songs added < random number of songs from 1 - 3
-                    #check if songs is already in playlist
-                        #if not then add song
-
-    def find_genre(genre_list):
-        mid = len(genre_list)//2
+ 
 
 
 
 def main():
-     p = Playlist("quaratine", "hip hop","tasty licks")
-     p.generate(20)
+    
 main()
